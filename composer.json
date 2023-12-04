@@ -1,5 +1,5 @@
 {
-    "name": "shahakshay938/adminkit",
+    "name": "tutus/adminkit",
     "description": "Minimal Laravel authentication scaffolding with Blade and Tailwind or API only.",
     "license": "MIT",
     "autoload": {
