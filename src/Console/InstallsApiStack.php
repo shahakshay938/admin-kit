@@ -3,6 +3,8 @@
 namespace Tutus\Adminkit\Console;
 
 use Illuminate\Filesystem\Filesystem;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\PhpExecutableFinder;
 
 trait InstallsApiStack
 {
@@ -159,7 +161,11 @@ trait InstallsApiStack
 
     protected function publishOnlyApiStackDependencyConfigs()
     {
-        $this->callSilent('vendor:publish', ['--tag' => 'scribe-config', '--force' => true]);
+        (new Process([$this->phpBinary(), 'artisan', 'vendor:publish', '--tag=scribe-config', '--force'], base_path()))
+            ->setTimeout(null)
+            ->run(function ($type, $output) {
+                $this->output->write($output);
+            });
     }
 
     protected function modifyingConfigFiles()
@@ -217,5 +223,15 @@ trait InstallsApiStack
             config_path('scribe.php')
         );
         copy(__DIR__ . '/../../stubs/only-api/config/utility.php', config_path('utility.php'));
+    }
+
+    /**
+     * Get the path to the appropriate PHP binary.
+     *
+     * @return string
+     */
+    protected function phpBinary()
+    {
+        return (new PhpExecutableFinder())->find(false) ?: 'php';
     }
 }
