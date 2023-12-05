@@ -1,12 +1,9 @@
 {
     "name": "tutus/adminkit",
     "description": "Minimal Laravel authentication scaffolding with Blade and Tailwind or API only.",
+    "keywords": ["laravel", "adminkit", "auth"],
     "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Tutus\\Adminkit\\": "src/"
-        }
-    },
+    "private": true,
     "authors": [
         {
             "name": "Akshay Shah",
@@ -20,5 +17,24 @@
         "illuminate/support": "^10.17",
         "illuminate/validation": "^10.17"
     },
-    "minimum-stability": "dev"
+    "autoload": {
+        "psr-4": {
+            "Tutus\\Adminkit\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Tutus\\Adminkit\\AdminKitServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
