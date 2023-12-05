@@ -21,7 +21,7 @@ trait InstallsApiStack
         }
 
         // Publish scribe config
-        $this->callSilent('vendor:publish --tag=scribe-config');
+        $this->callSilent('vendor:publish', ['--tag' => 'scribe-config']);
 
         // .gitignore
         $files->append(base_path(".gitignore"), "coverage" . PHP_EOL . "scribe" . PHP_EOL . "!scribe/");

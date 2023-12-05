@@ -1,7 +1,7 @@
 {
     "name": "tutus/adminkit",
     "description": "Minimal Laravel authentication scaffolding with Blade and Tailwind or API only.",
-    "keywords": ["laravel", "adminkit", "auth"],
+    "keywords": ["laravel", "admin kit", "auth"],
     "license": "MIT",
     "private": true,
     "authors": [
