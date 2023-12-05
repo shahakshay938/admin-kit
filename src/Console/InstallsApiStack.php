@@ -21,30 +21,30 @@ trait InstallsApiStack
         }
 
         // Publish scribe config
-        $this->callSilent('vendor:publish', ['--tag' => 'scribe-config']);
+        $this->call('vendor:publish', ['--tag' => 'scribe-config']);
 
         // .gitignore
         $files->append(base_path(".gitignore"), "coverage" . PHP_EOL . "scribe" . PHP_EOL . "!scribe/");
 
         // Tests...
-        copy(__DIR__.'/../../stubs/only-api/tests/Feature/WebRouteTest.php', base_path('tests/Feature/WebRouteTest.php'));
+        copy(__DIR__ . '/../../stubs/only-api/tests/Feature/WebRouteTest.php', base_path('tests/Feature/WebRouteTest.php'));
         $files->ensureDirectoryExists(base_path('tests/Feature/Auth'));
-        $files->copyDirectory(__DIR__.'/../../stubs/only-api/tests/Feature/Auth', base_path('tests/Feature/Auth'));
-        $files->copyDirectory(__DIR__.'/../../stubs/only-api/tests/Feature/Common', base_path('tests/Feature/Common'));
+        $files->copyDirectory(__DIR__ . '/../../stubs/only-api/tests/Feature/Auth', base_path('tests/Feature/Auth'));
+        $files->copyDirectory(__DIR__ . '/../../stubs/only-api/tests/Feature/Common', base_path('tests/Feature/Common'));
 
         // Stub
         $files->ensureDirectoryExists(base_path('stubs'));
-        $files->copyDirectory(__DIR__.'/../../stubs/only-api/stubs', base_path('stubs'));
+        $files->copyDirectory(__DIR__ . '/../../stubs/only-api/stubs', base_path('stubs'));
 
         // Routes...
-        copy(__DIR__.'/../../stubs/only-api/routes/web.php', base_path('routes/web.php'));
+        copy(__DIR__ . '/../../stubs/only-api/routes/web.php', base_path('routes/web.php'));
         $files->delete(base_path('routes/api.php'));
         $files->ensureDirectoryExists(base_path('routes/api'));
-        $files->copyDirectory(__DIR__.'/../../stubs/only-api/routes/api', base_path('routes/api'));
+        $files->copyDirectory(__DIR__ . '/../../stubs/only-api/routes/api', base_path('routes/api'));
 
         // Routes...
-        copy(__DIR__.'/../../stubs/only-api/database/factories/UserFactory.php', database_path('factories/UserFactory.php'));
-        copy(__DIR__.'/../../stubs/only-api/database/migrations/2014_10_12_000000_create_users_table.php', database_path('migrations/2014_10_12_000000_create_users_table.php'));
+        copy(__DIR__ . '/../../stubs/only-api/database/factories/UserFactory.php', database_path('factories/UserFactory.php'));
+        copy(__DIR__ . '/../../stubs/only-api/database/migrations/2014_10_12_000000_create_users_table.php', database_path('migrations/2014_10_12_000000_create_users_table.php'));
 
         // Configs...
         $this->replaceInFile(
@@ -99,80 +99,80 @@ trait InstallsApiStack
             "'order' => [" . PHP_EOL . "            'Common APIs'," . PHP_EOL . "            'Authentication',",
             config_path('scribe.php')
         );
-        copy(__DIR__.'/../../stubs/only-api/config/utility.php', config_path('utility.php'));
+        copy(__DIR__ . '/../../stubs/only-api/config/utility.php', config_path('utility.php'));
 
         // Traits...
         $files->ensureDirectoryExists(app_path('Traits'));
-        $files->copyDirectory(__DIR__.'/../../stubs/only-api/app/Traits', app_path('Traits'));
+        $files->copyDirectory(__DIR__ . '/../../stubs/only-api/app/Traits', app_path('Traits'));
 
         // Rules...
         $files->ensureDirectoryExists(app_path('Rules'));
-        copy(__DIR__.'/../../stubs/only-api/app/Rules/ValidatePasswordWithEmail.php', app_path('Rules/ValidatePasswordWithEmail.php'));
-        $files->copyDirectory(__DIR__.'/../../stubs/only-api/app/Rules/Api', app_path('Rules/Api'));
+        copy(__DIR__ . '/../../stubs/only-api/app/Rules/ValidatePasswordWithEmail.php', app_path('Rules/ValidatePasswordWithEmail.php'));
+        $files->copyDirectory(__DIR__ . '/../../stubs/only-api/app/Rules/Api', app_path('Rules/Api'));
 
         // Providers...
-        copy(__DIR__.'/../../stubs/only-api/app/Providers/ResponseMacroServiceProvider.php', app_path('Providers/ResponseMacroServiceProvider.php'));
-        copy(__DIR__.'/../../stubs/only-api/app/Providers/RouteServiceProvider.php', app_path('Providers/RouteServiceProvider.php'));
+        copy(__DIR__ . '/../../stubs/only-api/app/Providers/ResponseMacroServiceProvider.php', app_path('Providers/ResponseMacroServiceProvider.php'));
+        copy(__DIR__ . '/../../stubs/only-api/app/Providers/RouteServiceProvider.php', app_path('Providers/RouteServiceProvider.php'));
 
         // Model
-        copy(__DIR__.'/../../stubs/only-api/app/Models/User.php', app_path('Models/User.php'));
+        copy(__DIR__ . '/../../stubs/only-api/app/Models/User.php', app_path('Models/User.php'));
 
         // Http Kernal
         $this->replaceInFile(
             "'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,",
-            "'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,".PHP_EOL."        'docs'  =>  \App\Http\Middleware\ApiDocsMiddleware::class,",
+            "'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class," . PHP_EOL . "        'docs'  =>  \App\Http\Middleware\ApiDocsMiddleware::class,",
             app_path('Http/kernel.php')
         );
 
         // Model Resource
         $files->ensureDirectoryExists(app_path('Http/Resources/Auth/V1'));
-        copy(__DIR__.'/../../stubs/only-api/app/Http/Resources/Auth/V1/ProfileResource.php', app_path('Http/Resources/Auth/V1/ProfileResource.php'));
+        copy(__DIR__ . '/../../stubs/only-api/app/Http/Resources/Auth/V1/ProfileResource.php', app_path('Http/Resources/Auth/V1/ProfileResource.php'));
 
         // Requests...
         $files->ensureDirectoryExists(app_path('Http/Requests/Api/Auth'));
-        $files->copyDirectory(__DIR__.'/../../stubs/only-api/app/Http/Requests/Api/Auth', app_path('Http/Requests/Api/Auth'));
+        $files->copyDirectory(__DIR__ . '/../../stubs/only-api/app/Http/Requests/Api/Auth', app_path('Http/Requests/Api/Auth'));
 
         // Middlewares...
-        copy(__DIR__.'/../../stubs/only-api/app/Http/Middleware/AlwaysAcceptJson.php', app_path('Http/Middleware/AlwaysAcceptJson.php'));
-        copy(__DIR__.'/../../stubs/only-api/app/Http/Middleware/ApiDocsMiddleware.php', app_path('Http/Middleware/ApiDocsMiddleware.php'));
+        copy(__DIR__ . '/../../stubs/only-api/app/Http/Middleware/AlwaysAcceptJson.php', app_path('Http/Middleware/AlwaysAcceptJson.php'));
+        copy(__DIR__ . '/../../stubs/only-api/app/Http/Middleware/ApiDocsMiddleware.php', app_path('Http/Middleware/ApiDocsMiddleware.php'));
 
         // Controllers...
         $files->ensureDirectoryExists(app_path('Http/Controllers/Api/Auth/V1'));
         $files->ensureDirectoryExists(app_path('Http/Controllers/Api/Common/V1'));
-        copy(__DIR__.'/../../stubs/only-api/app/Http/Controllers/Api/Auth/V1/AuthenticationController.php', app_path('Http/Controllers/Api/Auth/V1/AuthenticationController.php'));
-        copy(__DIR__.'/../../stubs/only-api/app/Http/Controllers/Api/Common/V1/GeneralController.php', app_path('Http/Controllers/Api/Common/V1/GeneralController.php'));
+        copy(__DIR__ . '/../../stubs/only-api/app/Http/Controllers/Api/Auth/V1/AuthenticationController.php', app_path('Http/Controllers/Api/Auth/V1/AuthenticationController.php'));
+        copy(__DIR__ . '/../../stubs/only-api/app/Http/Controllers/Api/Common/V1/GeneralController.php', app_path('Http/Controllers/Api/Common/V1/GeneralController.php'));
 
         // Publish laravel's default language files
         $this->callSilent('lang:publish');
         $this->replaceInFile(
             "'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',",
-            "'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',".PHP_EOL."    'logout' => ':Entity logged out successfully.',",
+            "'throttle' => 'Too many login attempts. Please try again in :seconds seconds.'," . PHP_EOL . "    'logout' => ':Entity logged out successfully.',",
             base_path('lang/en/auth.php')
         );
         $this->replaceInFile(
             "'uuid' => 'The :attribute field must be a valid UUID.',",
-            "'uuid' => 'The :attribute field must be a valid UUID.',".PHP_EOL.PHP_EOL."    'checksum' => [".PHP_EOL."        'invalid' => 'Invalid checksum or failed to validate checksum.',".PHP_EOL."    ],",
+            "'uuid' => 'The :attribute field must be a valid UUID.'," . PHP_EOL . PHP_EOL . "    'checksum' => [" . PHP_EOL . "        'invalid' => 'Invalid checksum or failed to validate checksum.'," . PHP_EOL . "    ],",
             base_path('lang/en/validation.php')
         );
 
         // Commands...
         $files->ensureDirectoryExists(app_path('Console/Commands'));
-        copy(__DIR__.'/../../stubs/only-api/app/Console/Commands/ChecksumKeyGenerateCommand.php', app_path('Console/Commands/ChecksumKeyGenerateCommand.php'));
+        copy(__DIR__ . '/../../stubs/only-api/app/Console/Commands/ChecksumKeyGenerateCommand.php', app_path('Console/Commands/ChecksumKeyGenerateCommand.php'));
 
         // .env.example
         $files->append(
             base_path('.env.example'),
-            PHP_EOL."# Checksum Details --------------------------------------------------------------------------------".PHP_EOL."# To generate new key use `php artisan checksum:generate` command".PHP_EOL."CHECKSUM_KEY=".PHP_EOL."CHECKSUM_TIMEOUT=600".PHP_EOL.PHP_EOL."# Utility Parameters -------------------------------------------------------------------------------".PHP_EOL.'SANCTUM_TOKEN_NAME="${APP_NAME}"'.PHP_EOL.'API_AUTH_TOKEN_NAME="Authorization Token"'.PHP_EOL."API_DOCS_ALLOWED_IPS="
+            PHP_EOL . "# Checksum Details --------------------------------------------------------------------------------" . PHP_EOL . "# To generate new key use `php artisan checksum:generate` command" . PHP_EOL . "CHECKSUM_KEY=" . PHP_EOL . "CHECKSUM_TIMEOUT=600" . PHP_EOL . PHP_EOL . "# Utility Parameters -------------------------------------------------------------------------------" . PHP_EOL . 'SANCTUM_TOKEN_NAME="${APP_NAME}"' . PHP_EOL . 'API_AUTH_TOKEN_NAME="Authorization Token"' . PHP_EOL . "API_DOCS_ALLOWED_IPS="
         );
 
         // Environment...
-        if (! $files->exists(base_path('.env'))) {
+        if (!$files->exists(base_path('.env'))) {
             copy(base_path('.env.example'), base_path('.env'));
         }
 
         $files->append(
             base_path('.env'),
-            PHP_EOL."# Checksum Details --------------------------------------------------------------------------------".PHP_EOL."# To generate new key use `php artisan checksum:generate` command".PHP_EOL."CHECKSUM_KEY=".PHP_EOL."CHECKSUM_TIMEOUT=600".PHP_EOL.PHP_EOL."# Utility Parameters -------------------------------------------------------------------------------".PHP_EOL.'SANCTUM_TOKEN_NAME="${APP_NAME}"'.PHP_EOL.'API_AUTH_TOKEN_NAME="Authorization Token"'.PHP_EOL."API_DOCS_ALLOWED_IPS="
+            PHP_EOL . "# Checksum Details --------------------------------------------------------------------------------" . PHP_EOL . "# To generate new key use `php artisan checksum:generate` command" . PHP_EOL . "CHECKSUM_KEY=" . PHP_EOL . "CHECKSUM_TIMEOUT=600" . PHP_EOL . PHP_EOL . "# Utility Parameters -------------------------------------------------------------------------------" . PHP_EOL . 'SANCTUM_TOKEN_NAME="${APP_NAME}"' . PHP_EOL . 'API_AUTH_TOKEN_NAME="Authorization Token"' . PHP_EOL . "API_DOCS_ALLOWED_IPS="
         );
 
         $this->components->info('API stack installed successfully.');

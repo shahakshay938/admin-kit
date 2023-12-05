@@ -32,14 +32,14 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        // $confirmInstall = confirm(
-        //     label: "Make sure you're running this command on fresh laravel project, it will replace and modify your files.",
-        // );
+        $confirmInstall = confirm(
+            label: "Make sure you're running this command on fresh laravel project, it will replace and modify your files.",
+        );
 
-        // if (!$confirmInstall) {
-        //     $this->components->warn('Nothing was installed.');
-        //     return 1;
-        // }
+        if (!$confirmInstall) {
+            $this->components->warn('Nothing was installed.');
+            return 1;
+        }
 
         $stack = select(
             label: 'Which stack would you like to install?',
@@ -51,8 +51,6 @@ class InstallCommand extends Command
         if ($stack === "api_only") {
             $this->installOnlyApiStack();
         }
-
-
 
         return 1;
     }
