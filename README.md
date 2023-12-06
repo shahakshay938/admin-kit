@@ -11,10 +11,10 @@
         <img src="https://img.shields.io/packagist/l/tutus/adminkit" alt="License">
     </a>
     <a href="https://packagist.org/packages/tutus/adminkit">
-        <img src="https://img.shields.io/static/v1?label=laravel&message=%E2%89%A59.0&color=F32E21&logo=laravel" alt="Laravel Version">
+        <img src="https://img.shields.io/static/v1?label=php&message=%E2%89%A58.0&color=7A86B8&logo=php" alt="Laravel Version">
     </a>
     <a href="https://packagist.org/packages/tutus/adminkit">
-        <img src="https://img.shields.io/static/v1?label=php&message=%E2%89%A58.0&color=7A86B8&logo=php" alt="Laravel Version">
+        <img src="https://img.shields.io/static/v1?label=laravel&message=%E2%89%A59.0&color=F32E21&logo=laravel" alt="Laravel Version">
     </a>
 </p>
 
