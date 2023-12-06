@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api\Common\V1;
 
-use App\Models\User;
 use App\Traits\Api\ChecksumTrait;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
@@ -31,9 +30,7 @@ class GeneralController extends Controller
      */
     public function generateChecksum(GenerateChecksumRequest $request): JsonResponse
     {
-        $user = User::whereContactNumber($request->contact_number)->first();
-
-        $payload = $this->encodePayload($user->contact_number);
+        $payload = $this->encodePayload($request->contact_number);
 
         $data = ['checksum' => $payload];
 
