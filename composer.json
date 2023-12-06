@@ -23,6 +23,9 @@
         }
     },
     "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        },
         "laravel": {
             "providers": [
                 "Tutus\\Adminkit\\AdminKitServiceProvider"
@@ -34,5 +37,5 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "version": "1.0.7"
+    "version": "1.0.8"
 }
