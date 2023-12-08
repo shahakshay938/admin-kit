@@ -25,6 +25,8 @@ class AdminKitServiceProvider extends ServiceProvider
 
         $this->commands([
             Console\InstallCommand::class,
+            Core\Console\Commands\ChecksumKeyGenerateCommand::class,
+            Core\Console\Commands\StorageClearCommand::class,
         ]);
     }
 }
