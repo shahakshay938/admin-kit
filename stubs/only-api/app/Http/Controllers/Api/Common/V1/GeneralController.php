@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Api\Common\V1;
 
-use App\Traits\Api\ChecksumTrait;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Tutus\Adminkit\Core\Traits\Api\ChecksumTrait;
 use App\Http\Requests\Api\Auth\GenerateChecksumRequest;
 
 /**

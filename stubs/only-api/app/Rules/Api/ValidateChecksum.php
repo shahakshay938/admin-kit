@@ -3,7 +3,7 @@
 namespace App\Rules\Api;
 
 use Closure;
-use App\Traits\Api\ChecksumTrait;
+use Tutus\Adminkit\Core\Traits\Api\ChecksumTrait;
 use Illuminate\Contracts\Validation\ValidationRule;
 
 class ValidateChecksum implements ValidationRule
