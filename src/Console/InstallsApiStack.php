@@ -103,10 +103,6 @@ trait InstallsApiStack
             base_path('lang/en/validation.php')
         );
 
-        // Commands...
-        $files->ensureDirectoryExists(app_path('Console/Commands'));
-        copy(__DIR__ . '/../../stubs/only-api/app/Console/Commands/ChecksumKeyGenerateCommand.php', app_path('Console/Commands/ChecksumKeyGenerateCommand.php'));
-
         // .env.example
         $files->append(
             base_path('.env.example'),
