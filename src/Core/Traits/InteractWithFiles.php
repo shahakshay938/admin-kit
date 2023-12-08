@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits;
+namespace Tutus\Adminkit\Core\Traits;
 
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Http\FormRequest;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits\Api;
+namespace Tutus\Adminkit\Core\Traits\Api;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
