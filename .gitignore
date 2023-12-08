@@ -1,5 +1,9 @@
-/vendor
-composer.lock
-/phpunit.xml
+/.phpunit.cache
 .phpunit.result.cache
+/.fleet
+/.idea
+/.vscode
+/vendor
+npm-debug.log
+yarn-error.log
 .DS_Store
