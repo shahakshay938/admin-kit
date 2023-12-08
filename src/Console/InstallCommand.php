@@ -17,8 +17,9 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'adminkit:install {stack : The development stack that should be installed (blade,livewire,livewire-functional,react,vue,api)
-                {--composer=global : Absolute path to the Composer binary which should be used to install packages}';
+    protected $signature = 'adminkit:install {kit? : The starter kit that should be installed (only-api)}
+                            {--confirm : Confirm Kit Installation Anyway}
+                            {--composer=global : Absolute path to the Composer binary which should be used to install packages}';
 
     /**
      * The console command description.
@@ -32,7 +33,7 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        $confirmInstall = confirm(
+        $confirmInstall = $this->option('confirm') ?: confirm(
             label: "Make sure you're running this command on fresh laravel project, it will replace and modify your files.",
         );
 
@@ -41,15 +42,27 @@ class InstallCommand extends Command
             return 1;
         }
 
-        $stack = select(
-            label: 'Which stack would you like to install?',
-            options: [
-                'api_only' => 'API only',
-            ]
-        );
+        if($this->argument('kit') === 'api-only') {
+            $stack = 'api-only';
+        } else {
+            $stack = select(
+                label: 'Which stack would you like to install?',
+                options: [
+                    'api-only' => 'API only',
+                    'admin-only' => 'Admin only',
+                    'admin-api' => 'Admin + API',
+                ]
+            );
+        }
 
-        if ($stack === "api_only") {
+        if ($stack === "api-only") {
             $this->installOnlyApiStack();
+        }
+
+        if ($stack === 'admin-only' || $stack === 'admin-api') {
+            $this->components->alert('This kit is not available at the moment. Please check back in the future.');
+            $this->newLine();
+            return 1;
         }
 
         return 1;
